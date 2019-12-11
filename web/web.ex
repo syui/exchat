@@ -47,6 +47,7 @@ defmodule Exchat.Web do
       alias Exchat.ChangesetView
       alias Exchat.Time, as: Extime
       alias Exchat.EventChannel
+      alias Exchat.Mailer
 
       import Ecto
       import Ecto.Query, only: [from: 1, from: 2]

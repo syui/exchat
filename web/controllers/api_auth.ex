@@ -48,6 +48,7 @@ defmodule Exchat.ApiAuth do
 
     cond do
       user && checkpw(pass, user.password_hash) ->
+	Exchat.Email.hello_email(user.email) |> Exchat.Mailer.deliver_now
         {:ok, login(conn, user)}
       user ->
         {:error, :unauthorized, conn}

@@ -21,4 +21,5 @@ defmodule Exchat.Message do
   def ts(model) do
     model.inserted_at |> Extime.to_timestamp
   end
+
 end

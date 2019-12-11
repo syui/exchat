@@ -1,5 +1,4 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 class ErrorMessage extends React.Component {

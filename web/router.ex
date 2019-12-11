@@ -44,11 +44,14 @@ defmodule Exchat.Router do
   scope "/", Exchat do
     pipe_through :browser # Use the default browser stack
 
+    # get "/mail", MailController, :index
     get "/*path", PageController, :index
+
   end
 
   # Other scopes may use custom stacks.
   # scope "/api", Exchat do
   #   pipe_through :api
   # end
+
 end

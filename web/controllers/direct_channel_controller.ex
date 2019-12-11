@@ -17,6 +17,8 @@ defmodule Exchat.DirectChannelController do
         conn
         |> put_status(:created)
         |> render("channel.json", channel: channel, joined: true, user_id: user_id)
+
+
       {:error, changeset} ->
         conn
         |> put_status(:bad_request)

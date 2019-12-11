@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { PropTypes, Component } from 'react'
+//import React, { Component } from 'react';
+//import PropTypes from 'prop-types'
 import { DropdownButton, MenuItem } from 'react-bootstrap'
 
 import {signOut} from '../../actions/auth'
@@ -25,7 +26,8 @@ class Settings extends Component {
 }
 
 Settings.propTypes = {
-  dispatch: PropTypes.func
+  //dispatch: PropTypes.func
+  dispatch: React.PropTypes.func
 }
 
 export default Settings

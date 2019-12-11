@@ -21,7 +21,8 @@ defmodule Exchat.Mixfile do
   def application do
     [mod: {Exchat, []},
      applications: [:phoenix, :phoenix_html, :phoenix_pubsub, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin, :joken]]
+                    :phoenix_ecto, :postgrex, :comeonin, :joken, :bamboo]]
+		#[:ravenx]
   end
 
   # Specifies which paths to compile per environment
@@ -47,10 +48,16 @@ defmodule Exchat.Mixfile do
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 2.6.0"},
      {:excoveralls, "~> 0.6.2", only: :test},
-     {:joken, "~> 1.4.1"}]
+     {:joken, "~> 1.4.1"},
+     {:bamboo, "~> 1.0.0"},
+     {:bamboo_smtp, "~> 1.5.0"}
+    ]
+     #{:ravenx, "~> 1.1.3"},{:ravenx_email, "~> 0.1"},{:ravenx_slack, "~> 0.1"}]
   end
 
   defp preferred_cli_env do
     ["coveralls": :test, "coveralls.detail": :test, "coveralls.html": :test]
   end
+
+
 end

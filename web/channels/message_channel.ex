@@ -13,6 +13,7 @@ defmodule Exchat.MessageChannel do
     resp = Exchat.MessageView.render("index.json", %{messages: messages, count: @default_history_count})
             |> Map.put(:unread_count, unread_count)
 
+
     {:ok, resp, socket}
   end
   def join(_, _auth_msg, _socket) do
@@ -36,6 +37,9 @@ defmodule Exchat.MessageChannel do
           data = Exchat.MessageView.build("message.json", message, user: user)
           notify_dm_open(user, channel)
           broadcast! socket, "new_message", data
+          # email = Exchat.MessageView.build("message.json", message, user: user.email)
+          # notify_email(email)
+          # broadcast! socket, "new_message", email
           {:reply, :ok, socket}
         {:error, _changeset} ->
           {:reply, :error, socket}
@@ -62,6 +66,10 @@ defmodule Exchat.MessageChannel do
       end
     end
   end
+
+  # defp notify_email(email) do
+  #       Exchat.Email.hello_email(email) |> Exchat.Mailer.deliver_now
+  # end
 
   defp ensure_opposite_user_joined(user, channel) do
     opposite_id = Channel.opposite_direct_user_id(channel, user.id)

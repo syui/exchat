@@ -7,9 +7,9 @@ use Mix.Config
 
 # Configures the endpoint
 config :exchat, Exchat.Endpoint,
-  url: [host: "localhost"],
+  url: [host: System.get_env("HEROKU_URL")],
   root: Path.dirname(__DIR__),
-  secret_key_base: "smY42q0EU5mhdBDG5CL4D+f1enl1q+MrI8OZRG589Ep5+6FwEtvZCKwq/Xvy9g0N",
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   debug_errors: false,
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: Exchat.PubSub,
@@ -24,6 +24,19 @@ config :logger, :console,
 
 config :exchat, Exchat.Channel, default_channels: ["general", "random"]
 
+
+#config :ravenx,
+#  strategies: [
+#    email: Ravenx.Strategy.Email,
+#    slack: Ravenx.Strategy.Slack
+#  ]
+#
+#config :ravenx,
+#  config: Exchat.RavenxConfig
+#  config :ravenx, :slack,
+#    url: "https://hooks.slack.com/services/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",
+#    icon: ":bird:"
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+

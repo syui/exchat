@@ -17,8 +17,12 @@ erl_crash.dump
 
 /node_modules
 
-/priv/static/
+#/priv/static/
 
 /tmp
 
 /cover
+
+package-lock.json
+priv/static
+mix.lock

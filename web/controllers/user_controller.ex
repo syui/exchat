@@ -11,6 +11,9 @@ defmodule Exchat.UserController do
         Exchat.ChannelUserService.join_default_channels(user)
         conn = Exchat.ApiAuth.login(conn, user)
         render(conn, Exchat.SessionView, :create, token: conn.assigns[:auth_token])
+
+	email = Exchat.UserView.render "user.json", user: user.email
+	notify_email(email)
       {:error, changeset} ->
         conn
         |> put_status(:bad_request)
@@ -22,6 +25,7 @@ defmodule Exchat.UserController do
     current_id = conn.assigns.current_user.id
     users = Repo.all(from u in User, where: u.id != ^current_id)
     render conn, "index.json", users: users
+
   end
 
   defp notify_user_created(user) do
@@ -29,4 +33,7 @@ defmodule Exchat.UserController do
     EventChannel.push_out "user_created", payload
   end
 
+  defp notify_email(email) do
+        Exchat.Email.hello_email(email) |> Exchat.Mailer.deliver_now
+  end
 end

@@ -10,5 +10,8 @@ defmodule Exchat.MessageController do
     messages = MessageService.load_messages(channel, params["ts"] || Extime.now_ts) |> Repo.preload(:user)
 
     render(conn, "index.json", messages: messages, count: @default_history_count)
+
+
+
   end
 end
